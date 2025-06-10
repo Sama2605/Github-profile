@@ -1,7 +1,9 @@
-import { useState } from "react";
+// import { useState } from "react";
+import { useGitHub } from "./AppContext";
 
 const ProfileSearchBar = () => {
-  const [searchValue, setSearchValue] = useState("");
+  // const [searchValue, setSearchValue] = useState("");
+  const { setSearchValue, searchValue, userData } = useGitHub();
 
   const serachHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -9,7 +11,7 @@ const ProfileSearchBar = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(searchValue);
+    console.log(searchValue, userData);
   };
   return (
     <div className="relative">
