@@ -1,8 +1,10 @@
 console.log("Starting fetch request...");
 
+const BASE_URL = "https://api.github.com";
+
 export async function fetchGitHubUser(username: string): Promise<unknown> {
   try {
-    const response = await fetch(`https://api.github.com/users/${username}`);
+    const response = await fetch(`${BASE_URL}/users/${username}`);
     console.log(username);
     if (!response.ok) {
       throw new Error("Couldn't connect to the endpoint");
