@@ -1,0 +1,31 @@
+.header {
+  background-image: url("../../assets/hero-image-github-profile.jpg");
+  height: 240px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header__field {
+  width: 480px;
+  position: relative;
+  top: 50px;
+  justify-self: center;
+}
+
+.header__input {
+  background-color: var(--black-2);
+  border-radius: var(--radius);
+  height: 50px;
+  width: 100%;
+  padding-left: 45px;
+  font-size: 1.2rem;
+  font-weight: 450;
+  outline: none;
+}
+
+.header__icon {
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  left: 15px;
+}
