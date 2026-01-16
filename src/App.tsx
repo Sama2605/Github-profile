@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Header from "./components/Header";
+import Search from "./components/Search";
 import Profile from "./components/Profile";
 // import Repositories from "./components/Repositories";
 import "./index.css";
@@ -9,7 +9,7 @@ function App() {
   console.log(githubUsername);
   return (
     <>
-      <Header onUserSelect={setGithubUsername} />
+      <Search onUserSelect={setGithubUsername} />
       <main>
         <Profile username={githubUsername} />
 

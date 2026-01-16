@@ -3,21 +3,21 @@ import searchIcon from "../../assets/Search.svg";
 import { useState } from "react";
 import { useGithubUserSearch } from "../../hooks/useGithubUserSearch";
 
-type HeaderProps = {
+type SearchProps = {
   onUserSelect: (username: string) => void;
 };
-const Header = ({ onUserSelect }: HeaderProps) => {
+const Search = ({ onUserSelect }: SearchProps) => {
   const [query, setQuery] = useState("");
   const { users, isLoading, error } = useGithubUserSearch(query);
   console.log(users);
   return (
-    <header className="header">
-      <div className="header__field">
-        <img src={searchIcon} alt="search icon" className="header__icon" />
+    <header className="search">
+      <div className="search__field">
+        <img src={searchIcon} alt="search icon" className="search__icon" />
         <input
           type="text"
           placeholder="username"
-          className="header__input"
+          className="search__input"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           aria-label="Search GitHub username"
@@ -26,9 +26,10 @@ const Header = ({ onUserSelect }: HeaderProps) => {
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {users.length > 0 && (
-        <div className="">
+        <div className="search__results">
           {users.map((user) => (
             <div
+              className="search__resuts-item"
               key={user.login}
               onClick={() => {
                 onUserSelect(user.login);
@@ -43,4 +44,4 @@ const Header = ({ onUserSelect }: HeaderProps) => {
     </header>
   );
 };
-export default Header;
+export default Search;
