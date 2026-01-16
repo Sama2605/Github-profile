@@ -3,10 +3,13 @@ import searchIcon from "../../assets/Search.svg";
 import { useState } from "react";
 import { useGithubUserSearch } from "../../hooks/useGithubUserSearch";
 
-const Header = () => {
+type HeaderProps = {
+  onUserSelect: (username: string) => void;
+};
+const Header = ({ onUserSelect }: HeaderProps) => {
   const [query, setQuery] = useState("");
-  const { user, isLoading, error } = useGithubUserSearch(query);
-  console.log(user);
+  const { users, isLoading, error } = useGithubUserSearch(query);
+  console.log(users);
   return (
     <header className="header">
       <div className="header__field">
@@ -22,8 +25,21 @@ const Header = () => {
       </div>
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      {user && <p>{user.login}</p>}
-      {user && <p>{user.location}</p>}
+      {users.length > 0 && (
+        <div className="">
+          {users.map((user) => (
+            <div
+              key={user.login}
+              onClick={() => {
+                onUserSelect(user.login);
+                setQuery("");
+              }}
+            >
+              {user.login}
+            </div>
+          ))}
+        </div>
+      )}
     </header>
   );
 };

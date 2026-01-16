@@ -4,6 +4,24 @@ console.log("Starting fetch request...");
 
 const BASE_URL = "https://api.github.com";
 
+export async function searchGithubUsers(
+  query: string,
+  perPage = 5
+): Promise<GithubUser[]> {
+  const res = await fetch(
+    `${BASE_URL}/search/users?q=${encodeURIComponent(
+      query
+    )}&per_page=${perPage}`
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to search users");
+  }
+
+  const data = await res.json();
+  return data.items;
+}
+
 export async function fetchGithubUser(username: string): Promise<GithubUser> {
   const res = await fetch(`${BASE_URL}/users/${username}`);
 
